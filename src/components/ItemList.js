@@ -46,5 +46,17 @@ const ItemList = ({ items }) => {
     </div>
   );
 };
-
+export const withPromotedLabel = (RestaurantCard) => {
+  return (props) => {
+    // returns a function or returns a component basically(component is a function that returns a piece of jsx)
+    // This component is a enhance version of Restaurant card
+    return (
+      <div>
+        <label className="absolute bg-black text-white ml-4">Promoted</label>
+        <RestaurantCard {...props} />
+      </div>
+    );
+  };
+};
 export default ItemList;
+ 

@@ -13,7 +13,7 @@ const RestaurantCard = (props) => {
     locality,
   } = resData?.info  || {};
 
-  console.log(resData);
+  // console.log(resData);
 
   return (
     <div className="m-4 p-4 w-70 h-120 bg-gray-100 hover:bg-gray-200 res-card">
