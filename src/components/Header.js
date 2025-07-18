@@ -1,4 +1,4 @@
-import { LOGO_URL } from "../utils/constants/";
+import { LOGO_URL } from "../utils/constants";
 import { Link } from "react-router-dom";
 import { useState, useContext } from "react";
 import useOnlineStatus from "../utils/useOnlineStatus";
@@ -14,7 +14,6 @@ const Header = () => {
   // selector
 
   const cartItems = useSelector((store) => store.cart.items);
-  console.log(cartItems);
 
   const handleClick = () => {
     btnNameReact === "Login"

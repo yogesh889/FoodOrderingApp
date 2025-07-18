@@ -64,12 +64,12 @@ const Body = () => {
   return listOfRestaurants.length === 0 ? (
     <Shimmer />
   ) : (
-    <div className="w-full">
+    <div className="m-10 w-full">
       <div className="filter flex">
         <div className="m-4 p-4">
           <input
             type="text"
-            className="p-2 mx-2 border-2 border-solid focus:border-green-800 focus:outline-none border-green-100 hover:border-green-800 text-green-900 rounded-lg cursor-pointer"
+            className="p-2 mx-2 border-2 border-solid focus:border-green-800 focus:outline-none border-green-300 hover:border-green-800 text-green-900 rounded-lg cursor-pointer"
             value={searchText}
             onChange={(e) => {
               setSearchText(e.target.value);
@@ -111,7 +111,7 @@ const Body = () => {
         </div>
       </div>
       <div className=" flex justify-center px-4">
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 w-full ">
           {filteredRestaurant.map((restaurant) => (
             <Link
               key={restaurant?.info?.id}
