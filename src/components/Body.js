@@ -39,8 +39,8 @@ const Body = () => {
     const apiURL = `https://www.swiggy.com/dapi/restaurants/list/v5?lat=${lat}&lng=${lng}&is-seo-homepage-enabled=true`;
     const data = await fetch(apiURL);
     const json = await data.json();
-    console.log(apiURL);
-    console.log(lat, lng);
+    // console.log(apiURL);
+    // console.log(lat, lng);
 
     const restaurants = json?.data?.cards?.find(
       (card) => card?.card?.card?.gridElements?.infoWithStyle?.restaurants

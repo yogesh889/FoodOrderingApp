@@ -1,67 +1,46 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
-class UserClass extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      userInfo: {
-        name: 'Dummy',
-        location: 'default',
-      },
+const UserCard = () => {
+  const [userInfo, setUserInfo] = useState({
+    name: "Loading...",
+    location: "Fetching location...",
+    avatar_url: "https://via.placeholder.com/150",
+  });
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const data = await fetch("https://api.github.com/users/yogesh889");
+        const json = await data.json();
+        setUserInfo(json);
+        console.log(json);
+      } catch (error) {
+        console.error("Error fetching user data:", error);
+      }
     };
-  }
 
-  async componentDidMount() {
-    const data = await fetch(
-      "https://api.github.com/users/yogesh889"
-    );
-    const json = await data.json();
+    fetchUser();
 
-    this.setState({
-      userInfo: json,
-    });
+    // Optional cleanup
+    return () => {
+      console.log("UserCard component unmounted");
+    };
+  }, []);
 
-    console.log(json);
-  }
+  const { name, location, avatar_url } = userInfo;
 
-  componentDidUpdate() {
-    console.log("component did update");
-  }
+  return (
+    <div className="max-w-md mx-auto mt-10 bg-white shadow-lg rounded-2xl overflow-hidden p-6 text-center border border-gray-200">
+      <img
+        src={avatar_url}
+        alt={name}
+        className="w-32 h-32 rounded-full mx-auto border-4 border-blue-500 shadow-md"
+      />
+      <h2 className="text-2xl font-semibold mt-4 text-gray-800">Name: {name}</h2>
+      <h3 className="text-lg text-gray-600 mt-1">Location: {location}</h3>
+      <h4 className="text-sm text-gray-500 mt-2">Contact: @vaasuk24</h4>
+    </div>
+  );
+};
 
-  componentWillUnmount() {
-    console.log("component will unmound");
-  }
-
-  render() {
-    const { name, location, avatar_url } = this.state.userInfo;
-    return (
-      <div className="user-card">
-        <img src={avatar_url} alt={name} />
-        {/* // * accessing the state variable */}
-        {/* <h1>Count: {this.state.count}</h1> */}
-        {/* <h1>Count: {count}</h1> */}
-        {/* <button
-          onClick={() => {
-            // * NEVER UPDATE STATE VARIABLES DIRECTLY
-            // this.state.count = this.state.count + 1;
-
-            // * USE setState() method instead
-
-            this.setState({
-              count: this.state.count + 1,
-            });
-          }}
-        >
-          Count Increase
-        </button> */}
-        {/* <h2>Name: {this.props.name}</h2> */}
-        <h2>Name: {name}</h2>
-        {/* <h3>Location: {this.props.location}</h3> */}
-        <h3>Location: {location}</h3>
-        <h4>Contact: @vaasuk24</h4>
-      </div>
-    );
-  }
-}
-
-export default UserClass;
+export default UserCard;
